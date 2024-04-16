@@ -405,6 +405,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c090e8a89ed03ca47807709e02c22e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  horizontalBoundary: 22
+  hayBalePrefab: {fileID: 297971419343382750, guid: bad8e93c83de2234591fdd960674089f,
+    type: 3}
+  shootInterval: 0.5
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
