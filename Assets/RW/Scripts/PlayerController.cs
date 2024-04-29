@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
     void ShootHay()
     {
         if (shootTimer < 0 && Input.GetKeyUp(KeyCode.Space))
