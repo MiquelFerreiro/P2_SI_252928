@@ -7,9 +7,11 @@ public class SheepSpawner : MonoBehaviour
     public bool canSpawn = true; // 1
     public GameObject sheepPrefab; // 2
     public List<Transform> sheepSpawnPositions = new List<Transform>(); // 3
+
+    [SerializeField]
     public float timeBetweenSpawns; // 4
 
-    private List<GameObject> sheepList = new List<GameObject>(); // 5
+    public List<GameObject> sheepList = new List<GameObject>(); // 5
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,15 @@ public class SheepSpawner : MonoBehaviour
             SpawnSheep(); // 3
             yield return new WaitForSeconds(timeBetweenSpawns); // 4
         }
+    }
+    public void DestroyAllSheep()
+    {
+        foreach (GameObject sheep in sheepList) // 1
+        {
+            Destroy(sheep); // 2
+        }
+
+        sheepList.Clear();
     }
     public void RemoveSheepFromList(GameObject sheep)
     {

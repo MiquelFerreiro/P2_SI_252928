@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class Heart : MonoBehaviour
 {
-    [SerializeField]
-    public float speed;
+    public Vector3 Movement_Speed;
+    public Vector3 Rotation_Speed;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +16,7 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, speed * Time.deltaTime, 0);
+        transform.Translate(Movement_Speed * Time.deltaTime);
+        transform.Rotate(Rotation_Speed * Time.deltaTime);
     }
 }

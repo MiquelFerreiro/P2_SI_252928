@@ -12,11 +12,38 @@ public class PlayerController : MonoBehaviour
     public float shootInterval; //The smallest amount of time between shots
     private float shootTimer; //A timer that to keep track whether the machine can shoot 
 
+    public Transform modelParent; // 1
+
+    // 2
+    public GameObject blueModelPrefab;
+    public GameObject yellowModelPrefab;
+    public GameObject redModelPrefab;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        LoadModel();
+
+    }
+    private void LoadModel()
+    {
+        Destroy(modelParent.GetChild(0).gameObject); // 1
+
+        switch (GameSettings.hayMachineColor) // 2
+        {
+            case HayMachineColor.Blue:
+                Instantiate(blueModelPrefab, modelParent);
+                break;
+
+            case HayMachineColor.Yellow:
+                Instantiate(yellowModelPrefab, modelParent);
+                break;
+
+            case HayMachineColor.Red:
+                Instantiate(redModelPrefab, modelParent);
+                break;
+        }
     }
 
     void UpdateMovement()
@@ -36,10 +63,14 @@ public class PlayerController : MonoBehaviour
 
     void ShootHay()
     {
+
         if (shootTimer < 0 && Input.GetKeyUp(KeyCode.Space))
         {
+
             shootTimer = shootInterval; 
             Instantiate(hayBalePrefab, transform.position + new Vector3(0, 2f, 4f), Quaternion.identity);
+            SoundManager.Instance.PlayShootClip();
+
         }
         shootTimer += -Time.deltaTime;
     }
